@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return to Breath</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Screen 1: State Selection -->
+        <section id="selection-screen" class="screen active">
+            <div class="header-content">
+                <h1>Return to Breath</h1>
+                <p class="subtitle">How are you feeling right now?</p>
+            </div>
+            
+            <div class="emotion-grid">
+                <button class="emotion-card" data-state="anxious">
+                    <span class="emoji">🔴</span>
+                    <div class="card-text-content">
+                        <span class="state-title">Anxious or Panicked</span>
+                        <span class="state-desc">Box Breathing (4-4-4-4)</span>
+                    </div>
+                </button>
+                <button class="emotion-card" data-state="stressed">
+                    <span class="emoji">🟠</span>
+                    <div class="card-text-content">
+                        <span class="state-title">Stressed or Overwhelmed</span>
+                        <span class="state-desc">Extended Exhale (4s In, 7s Out)</span>
+                    </div>
+                </button>
+                <button class="emotion-card" data-state="scattered">
+                    <span class="emoji">🟢</span>
+                    <div class="card-text-content">
+                        <span class="state-title">Scattered or Restless</span>
+                        <span class="state-desc">Coherent Breathing (5s In, 5s Out)</span>
+                    </div>
+                </button>
+                <button class="emotion-card" data-state="energize">
+                    <span class="emoji">🔵</span>
+                    <div class="card-text-content">
+                        <span class="state-title">Low Energy or Sluggish</span>
+                        <span class="state-desc">Energizing Breath (4-2-4-1)</span>
+                    </div>
+                </button>
+            </div>
+
+            <div class="custom-nav-container">
+                <button id="open-custom-btn" class="secondary-action-btn"> My Rhythms (Custom Routine)</button>
+            </div>
+        </section>
+
+        <!-- Screen 2: Breathing Sanctuary -->
+        <section id="sanctuary-screen" class="screen">
+            <button id="back-btn" class="back-btn">← Choose Another State</button>
+            
+            <div class="sanctuary-content">
+                <h2 id="active-state-title">Anxious</h2>
+                
+             <div class="breathing-container">
+                  <div class="static-ring"></div>
+                  <div class="expanding-ring" id="expandingRing"></div>
+                  <div class="breathing-circle" id="breathingCircle"></div>
+                  <div class="instruction-display">
+                      <p id="instructionText">Prepare...</p>
+                      <span id="timerText"></span>
+                  </div>
+             </div>
+
+                <div class="session-info">
+                    <p id="cycleText">Cycle 1 of 5</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal: Session Configuration Popup -->
+    <div id="config-modal" class="modal-overlay">
+        <div class="modal-card">
+            <h3 id="modal-title">Configure Session</h3>
+            <p id="modal-subtitle">Customize your breathing duration</p>
+            
+            <div class="modal-field">
+                <label for="cycleInput">Number of Cycles:</label>
+                <input type="number" id="cycleInput" min="1" max="50" value="5">
+            </div>
+
+            <div class="modal-actions">
+                <button id="cancel-config-btn" class="btn-secondary">Cancel</button>
+                <button id="start-session-btn" class="btn-primary">Begin Breath</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Custom Breath Creator ("My Breaths") -->
+    <div id="custom-modal" class="modal-overlay">
+        <div class="modal-card custom-breath-card">
+            <h3>Create Custom Breath</h3>
+            <p>Design your own rhythm for "My Breaths"</p>
+            
+            <div class="modal-field">
+                <label for="customName">Routine Name:</label>
+                <input type="text" id="customName" placeholder="e.g., Deep Focus Release">
+            </div>
+            
+            <div class="timing-inputs-grid">
+                <div class="modal-field">
+                    <label>Inhale (s):</label>
+                    <input type="number" id="customInhale" min="1" max="20" value="4">
+                </div>
+                <div class="modal-field">
+                    <label>Hold 1 (s):</label>
+                    <input type="number" id="customHold1" min="0" max="20" value="4">
+                </div>
+                <div class="modal-field">
+                    <label>Exhale (s):</label>
+                    <input type="number" id="customExhale" min="1" max="20" value="4">
+                </div>
+                <div class="modal-field">
+                    <label>Hold 2 (s):</label>
+                    <input type="number" id="customHold2" min="0" max="20" value="4">
+                </div>
+            </div>
+
+            <div class="modal-field">
+                <label for="customCycles">Cycles:</label>
+                <input type="number" id="customCycles" min="1" max="30" value="4">
+            </div>
+
+            <div id="saved-custom-list" class="saved-list">
+                <!-- Dynamically populated custom routines -->
+            </div>
+
+            <div class="modal-actions">
+                <button id="close-custom-btn" class="btn-secondary">Close</button>
+                <button id="save-custom-btn" class="btn-primary">Save & Start</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
